@@ -3,7 +3,7 @@ package edu.seg2105.edu.server.backend;
 // "Object Oriented Software Engineering" and is issued under the open-source
 // license found at www.lloseng.com 
 
-
+import java.io.IOException;
 import ocsf.server.*;
 
 /**
@@ -45,11 +45,18 @@ public class EchoServer extends AbstractServer
    * @param msg The message received from the client.
    * @param client The connection from which the message originated.
    */
-  public void handleMessageFromClient
-    (Object msg, ConnectionToClient client)
-  {
-    System.out.println("Message received: " + msg + " from " + client);
-    this.sendToAllClients(msg);
+  public void handleMessageFromClient(Object msg, ConnectionToClient client){
+	 if (msg.equals("#logoff")) {
+		 try {
+			 System.out.println("Client " + client + " has disconnected.");
+	         client.close();
+	     } catch (IOException e) {
+	         System.out.println("Error closing client connection: " + e.getMessage());
+	     }
+	 } else {
+	 System.out.println("Message received: " + msg + " from " + client);
+	 this.sendToAllClients(msg);
+	 }
   }
     
   /**
@@ -105,6 +112,21 @@ public class EchoServer extends AbstractServer
     {
       System.out.println("ERROR - Could not listen for clients!");
     }
+  }
+  
+  @Override
+  protected void clientConnected(ConnectionToClient client) {
+	  System.out.println("A new client has connected: " + client);
+  }
+  
+  @Override
+  synchronized protected void clientDisconnected(ConnectionToClient client) {
+	  System.out.println("A client has disconnected." );
+  }
+  
+  @Override
+  synchronized protected void clientException(ConnectionToClient client, Throwable exception) {
+	  System.out.println("A client disconnected unexpectedly " + exception);
   }
 }
 //End of EchoServer class
