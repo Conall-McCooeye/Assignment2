@@ -98,7 +98,6 @@ public class ChatClient extends AbstractClient
 		  } else {
 			  try {
 				  closeConnection();
-				  clientUI.display("You have been logged off from the server.");
 			  } catch (IOException e) {
 				  clientUI.display("Error: Could not log off properly.");
 			  }

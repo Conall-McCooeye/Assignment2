@@ -99,12 +99,10 @@ public class ServerConsole implements ChatIF {
     		}
     		else if (command.equals("#stop")) {
     			server.stopListening();
-    			display("Server stopped listening for new clients.");
     		}
     		else if (command.equals("#close")) {
     			try {
     				server.close();
-    				display("Server closed. All clients disconnected.");
     			} catch (IOException e) {
     				display("Error: Could not close server properly.");
     			}
@@ -133,7 +131,6 @@ public class ServerConsole implements ChatIF {
     			} else {
     				try {
     					server.listen();
-    					display("Server started listening for new clients.");
     				} catch (Exception e) {
     					display("Error: Could not start listening.");
     				}

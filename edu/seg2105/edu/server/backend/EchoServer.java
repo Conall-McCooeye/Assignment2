@@ -133,7 +133,7 @@ public class EchoServer extends AbstractServer {
   @Override
   synchronized protected void clientDisconnected(ConnectionToClient client) {
 	  String loginID = (String) client.getInfo("loginID");
-	  System.out.println("Client " + loginID + " has disconnected.");
+	  System.out.println(loginID + " has disconnected.");
   }
 
   /**
@@ -144,12 +144,6 @@ public class EchoServer extends AbstractServer {
    */
   @Override
   synchronized protected void clientException(ConnectionToClient client, Throwable exception) {
-	  String loginID = (String) client.getInfo("loginID");
-	  if (loginID != null) {
-		  System.out.println("Client " + loginID + " disconnected due to an error: " + exception);
-	  } else {
-		  System.out.println("A client disconnected due to an error: " + exception);
-	  }
   }
   
 }
