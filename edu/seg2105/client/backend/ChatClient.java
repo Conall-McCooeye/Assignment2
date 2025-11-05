@@ -186,7 +186,7 @@ public class ChatClient extends AbstractClient
   
   /**
    * Implements the hook method called after the connection has been closed. The default
-   * implementation does nothing. The method may be overriden by subclasses to
+   * implementation does nothing. The method may be overridden by subclasses to
    * perform special processing such as cleaning up and terminating, or
    * attempting to reconnect.
    */

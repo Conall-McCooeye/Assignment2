@@ -75,7 +75,7 @@ public class ServerConsole implements ChatIF {
                 if (message.startsWith("#")) {
                 		handleCommand(message);
                 } else {
-                	String serverMessage = "SERVER MSG> " + message;
+                	String serverMessage = "SERVER MESSAGE> " + message;
                     display(serverMessage);
                     server.sendToAllClients(serverMessage);
                 }
