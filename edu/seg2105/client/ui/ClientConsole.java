@@ -122,8 +122,8 @@ public class ClientConsole implements ChatIF
   {
 	  
 	if (args.length < 1) {
-		System.out.println("Error: You must provide a login ID as the first argument.");
-		System.exit(1);
+		System.out.println("ERROR - No login ID specified.  Connection aborted.");
+		return;
 	}
     
 	String loginID =args[0];

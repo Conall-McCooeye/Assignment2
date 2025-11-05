@@ -71,10 +71,12 @@ public class EchoServer extends AbstractServer {
 			  return;
 		  }
 		  
+		  System.out.println("Message received: " + message + " from " + loginID);
+		  
 		  client.setInfo("loginID", parts[1].trim());
-		  System.out.println("Client " + client + " logged in as " + parts[1].trim());
+		  String newLoginID = (String) client.getInfo("loginID");
 		  try {
-			  client.sendToClient("Successfully logged in as " + parts[1].trim());
+			  client.sendToClient(newLoginID + " has logged on.");
 		  } catch (IOException e) {}
 		  return;
 	  }
@@ -90,7 +92,7 @@ public class EchoServer extends AbstractServer {
 
 	  String messageToSend = loginID + "> " + message;
 	  this.sendToAllClients(messageToSend);
-	  System.out.println("Message received from " + loginID + ": " + message);
+	  System.out.println("Message received: " + message + " from " + loginID);
   }
     
   /**
@@ -120,8 +122,7 @@ public class EchoServer extends AbstractServer {
    */
   @Override
   protected void clientConnected(ConnectionToClient client) {
-	  String loginID = (String) client.getInfo("loginID");
-	  System.out.println("Client " + loginID + " has connected to the server.");
+	  System.out.println("A new client has connected to the server.");
   }
 
   /**
